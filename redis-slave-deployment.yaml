@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: redis-slave
+  labels:
+    app: redis
+    role: slave
+    tier: backend
+spec:
+  selector:
+    matchLabels:
+     app: redis
+     role: slave
+     tier: backend
+  replicas: 2
+  template:
+     metadata:
+        labels:
+          app: redis
+          role: slave
+          tier: backend
+     spec:
+        containers:
+        - name: redis-slave
+          image: kubernetes/redis-slave:v2
+          ports:
+          - name: redis-server
+            containerPort: 6379
+                     
+                  
+               
+            
+         
+      
+   
+
